@@ -27,6 +27,9 @@ services:
             MYSQL_PASSWORD: secret
             MYSQL_DATABASE: docker-php
     # redis
+    cache:
+        image: redis:latest
+
 
 volumes:
     mysqldata:
