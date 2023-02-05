@@ -29,6 +29,7 @@ services:
     # redis
     cache:
         image: redis:latest
+        restart: always
 
 
 volumes:
