@@ -1,4 +1,27 @@
-<?php ?>
+<?php
+
+use App\Repository\TranslationRepository;
+
+require_once dirname(__DIR__) . '/vendor/autoload.php';
+
+$client = \Symfony\Component\Cache\Adapter\RedisAdapter::createConnection(
+    "redis://{$_ENV['REDIS_HOST']}:{$_ENV['REDIS_PORT']}"
+);
+
+$cacheAdapter = new \Symfony\Component\Cache\Adapter\RedisAdapter($client);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $translationCache = new \App\Cache\TranslationCache($cacheAdapter, new TranslationRepository());
+    $translation = $translationCache->findForLanguage($_POST['language'], $_POST['phrase']) ?: 'Translation not found...';
+
+} else {
+
+    $languageRepository = new \App\Repository\LanguageRepository();
+    $languages = $languageRepository->findAll();
+}
+
+?>
 
 <!doctype html>
 <html lang="en">
