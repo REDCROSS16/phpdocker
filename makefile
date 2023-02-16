@@ -6,3 +6,8 @@ composer-igonre-platform:
 
 dump-autoload:
 	composer dump-autoload
+
+
+# пример
+#load:
+#	docker-compose -f docker-compose.dev.yaml up --env-file .env.local --build -d
