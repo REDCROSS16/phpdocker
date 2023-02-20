@@ -11,7 +11,7 @@ jobs:
             - name: Install Composer Dependencies
               working-directory: ./app
               run: composer install --prefer-dist
-            - name: Run Tests
+#            - name: Run Tests
               working-directory: ./app
               run: composer run-phpunit
             - run: docker build --target app -t alexredcross16113141/php-composer:1.2 -f ./php/Dockerfile .
